@@ -1,0 +1,19 @@
+{
+  "name": "alexa-robinhood-skill-login",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon ./bin/www",
+    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./bin/www",
+    "eslint": "eslint ."
+  },
+  "engines": {
+    "node": "6.9.4"
+  },
+  "dependencies": {
+    "bluebird": "^3.3.1",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0"
+  }
+}
