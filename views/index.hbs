@@ -1,30 +1,42 @@
 <link rel="stylesheet" href="https://d2ue93q3u507c2.cloudfront.net/assets/CACHE/css/5849a5e0722f.css" type="text/css" media="all">
 <link rel="stylesheet" href="https://d2ue93q3u507c2.cloudfront.net/assets/CACHE/css/5336fb4ab5e6.css" type="text/css" media="all">
+<script src="/jquery"></script>
+<script>
+  function handleSubmit() {
+    jQuery.post("/login", { username: $('input[name="username"]').val(), password: $('input[name="password"]').val(), state: "{{state}}", redirect_uri: "{{redirect_uri}}" })
+    .fail(function(val) {
+      alert(val.responseText || 'Error: Unable to login');
+    });
+  }
+</script>
 <div class="row">
   <div class="col-md-10 col-md-offset-1 text-center">
     <img alt="Robinhood Alexa Skill logo" id="logo" src="images/robinhood_alexa_logo.png" data-at2x="images/robinhood_alexa_logo.png" class="header-logo" width="255" height="311">
   </div>
   <div class="col-md-10 col-md-offset-1 text-center">
-    <form action="/signup/login/" data-page-name="login" id="signup_form" method="post" onsubmit="return false" novalidate="">
+    <form id='fff' action="/login" method="post" onsubmit="handleSubmit(); return false;">
       <!-- <input type="hidden" name="csrfmiddlewaretoken" value="uCOPE5BzzgWlNU2hOAtCL1lqvClxhVHCrhEVcy28myOpNkuq5enwCjJaaGYiztfr"> -->
       <div class="mtl row">
         <div class="col-sm-6 col-sm-offset-3">
-          <input class="form-control input-lg signup-field" data-parsley-errors-messages-disabled="" data-parsley-required="true" data-parsley-trigger="change" data-trigger="focus" name="username" placeholder="Robinhood username" value="" data-original-title="" title="" data-parsley-id="3144"><ul class="parsley-errors-list" id="parsley-id-3144"></ul>
+          <input class="form-control input-lg signup-field" data-trigger="focus" name="username" placeholder="Robinhood username" value="" type="text" data-original-title="" title="">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-          <input class="form-control input-lg signup-field" data-parsley-errors-messages-disabled="" data-parsley-required="true" data-parsley-trigger="change" data-trigger="focus" name="password" placeholder="Password" type="password" data-original-title="" title="" data-parsley-id="6160"><ul class="parsley-errors-list" id="parsley-id-6160"></ul>
+          <input class="form-control input-lg signup-field" data-trigger="focus" name="password" placeholder="Password" type="password" data-original-title="" title="">
         </div>
       </div>
 
       <div class="mts row">
         <div class="col-sm-12">
-          <button class="btn btn-lg btn-default login-button mts" type="submit">
+          <!-- <button class="btn btn-lg btn-default login-button mts" type="submit">
             Log In
-          </button>
+          </button> -->
+          <!-- <input class="btn btn-lg btn-default login-button mts" type="submit" value="Log In"> -->
         </div>
       </div>
+      <input type="submit" value="Submit">
     </form>
   </div>
+  <p class="col-md-10 col-md-offset-1 text-center" style="color:red;"">* This is an unoffical app. It is not built by Robinhood. It's source code can be found <a href="https://github.com/dvehar/alexa-robinhood-skill-login">here</a></p>
 </div>
