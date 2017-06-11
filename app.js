@@ -45,7 +45,7 @@ app.post('/login', function (req, res, next) {
       res.send('Unable to process request: ' + (body || ''));
     } else {
       console.log('Got a token');
-      res.redirect(redirect_uri + '?state=' + state + '&access_token=' + body.token + '&token_type=Bearer');
+      res.redirect(redirect_uri + '?state=' + state + '&access_token=' + JSON.parse(body).token + '&token_type=Bearer');
     }
   });
 });
