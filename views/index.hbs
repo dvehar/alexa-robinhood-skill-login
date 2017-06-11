@@ -3,7 +3,10 @@
 <script src="/jquery"></script>
 <script>
   function handleSubmit() {
-    jQuery.post("/login", { username: $('input[name="username"]').val(), password: $('input[name="password"]').val(), state: "{{state}}", redirect_uri: "{{redirect_uri}}" })
+    jQuery.post("/login", { username: $('input[name="username"]').val(), password: $('input[name="password"]').val(), state: "{{state}}", redirect_uri: "{{redirect_uri}}" }, function (data) {
+        window.location.href = "{{redirect_uri}}".replace('&#x3D;', '=') + '#state={{state}}&access_token=' + data + '&token_type=Bearer';
+        return false;
+    })
     .fail(function(val) {
       alert(val.responseText || 'Error: Unable to login');
     });
@@ -14,7 +17,7 @@
     <img alt="Robinhood Alexa Skill logo" id="logo" src="images/robinhood_alexa_logo.png" data-at2x="images/robinhood_alexa_logo.png" class="header-logo" width="255" height="311">
   </div>
   <div class="col-md-10 col-md-offset-1 text-center">
-    <form id='fff' action="/login" method="post" onsubmit="handleSubmit(); return false;">
+    <form action="/login" method="post" onsubmit="handleSubmit(); return false;">
       <!-- <input type="hidden" name="csrfmiddlewaretoken" value="uCOPE5BzzgWlNU2hOAtCL1lqvClxhVHCrhEVcy28myOpNkuq5enwCjJaaGYiztfr"> -->
       <div class="mtl row">
         <div class="col-sm-6 col-sm-offset-3">
